@@ -1,0 +1,125 @@
+{
+  "smoke": false,
+  "test_year": 2021,
+  "training_years": 10,
+  "image_speed_max_ms": 61.19258117675781,
+  "primary": [
+    "plain",
+    "both"
+  ],
+  "trial_indices": {
+    "lstm": [
+      66,
+      67,
+      68
+    ],
+    "plain": [
+      69,
+      70,
+      71
+    ],
+    "both": [
+      90,
+      91,
+      92
+    ]
+  },
+  "settings": {
+    "lstm": [
+      {
+        "arm": "lstm",
+        "mass": 0.0,
+        "energy": 0.0,
+        "lr": 0.0001,
+        "seed": 42,
+        "training_years": 10,
+        "trial": 66,
+        "epoch": 59
+      },
+      {
+        "arm": "lstm",
+        "mass": 0.0,
+        "energy": 0.0,
+        "lr": 0.0001,
+        "seed": 43,
+        "training_years": 10,
+        "trial": 67,
+        "epoch": 60
+      },
+      {
+        "arm": "lstm",
+        "mass": 0.0,
+        "energy": 0.0,
+        "lr": 0.0001,
+        "seed": 44,
+        "training_years": 10,
+        "trial": 68,
+        "epoch": 59
+      }
+    ],
+    "plain": [
+      {
+        "arm": "plain",
+        "mass": 0.0,
+        "energy": 0.0,
+        "lr": 0.0001,
+        "seed": 42,
+        "training_years": 10,
+        "trial": 69,
+        "epoch": 59
+      },
+      {
+        "arm": "plain",
+        "mass": 0.0,
+        "energy": 0.0,
+        "lr": 0.0001,
+        "seed": 43,
+        "training_years": 10,
+        "trial": 70,
+        "epoch": 60
+      },
+      {
+        "arm": "plain",
+        "mass": 0.0,
+        "energy": 0.0,
+        "lr": 0.0001,
+        "seed": 44,
+        "training_years": 10,
+        "trial": 71,
+        "epoch": 59
+      }
+    ],
+    "both": [
+      {
+        "arm": "both",
+        "mass": 0.03,
+        "energy": 0.003,
+        "lr": 0.0001,
+        "seed": 42,
+        "training_years": 10,
+        "trial": 90,
+        "epoch": 59
+      },
+      {
+        "arm": "both",
+        "mass": 0.03,
+        "energy": 0.003,
+        "lr": 0.0001,
+        "seed": 43,
+        "training_years": 10,
+        "trial": 91,
+        "epoch": 60
+      },
+      {
+        "arm": "both",
+        "mass": 0.03,
+        "energy": 0.003,
+        "lr": 0.0001,
+        "seed": 44,
+        "training_years": 10,
+        "trial": 92,
+        "epoch": 59
+      }
+    ]
+  }
+}
