@@ -16,7 +16,7 @@ c_k=\sigma(a_f)\odot c_{k-1}+\sigma(a_i)\odot\tanh(a_g),
 $$
 
 $$
-\widehat X_{k+1}=X_k+\operatorname{reshape}(Vh_k+d)
+\widehat X_{k+1}=X_k+\mathrm{reshape}(Vh_k+d)
 $$
 
 Here $X_k$ denotes the map supplied at step $k$. A dense readout predicts a change at every location. The cell and hidden state start at zero.
@@ -95,7 +95,7 @@ $$
 L_d=\left\langle\left|\cos(A\Delta C,A\Delta M)\right|\right\rangle
 $$
 
-For diagnostic $q$ (mass or energy), $\tau_q$ is the training standard deviation of the ERA5 diagnostic, floored at $10^{-12}$. The area weight $w_i=\cos\phi_i/\operatorname{mean}_{\mathrm{interior}}(\cos\phi)$ has mean one. The penalty measures the squared, scaled discrepancy on the interior.
+For diagnostic $q$ (mass or energy), $\tau_q$ is the training standard deviation of the ERA5 diagnostic, floored at $10^{-12}$. The area weight $w_i=\cos\phi_i/\mathrm{mean}_{\mathrm{interior}}(\cos\phi)$ has mean one. The penalty measures the squared, scaled discrepancy on the interior.
 
 $$
 P_q=\left\langle w_i\left(\frac{B_q(\widehat X)-B_q(X)}{\tau_q}\right)^2
@@ -124,5 +124,5 @@ At lead $h$, let $\delta u$ and $\delta v$ be the forecast errors in m/s. For ea
 
 $$
 R_h=\sqrt{\left\langle w_i[(\delta u_h)^2+(\delta v_h)^2]\right\rangle_{\mathrm{date,interior}}},
-\qquad G_h=\operatorname{mean}_{\mathrm{seeds}}(R_{h,\mathrm{plain}}-R_{h,\mathrm{constrained}})
+\qquad G_h=\mathrm{mean}_{\mathrm{seeds}}(R_{h,\mathrm{plain}}-R_{h,\mathrm{constrained}})
 $$
