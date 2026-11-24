@@ -1,5 +1,8 @@
 """Build the editable first report from the archived Tufts scores and plot."""
 import csv
+import subprocess
+from copy import deepcopy
+from io import BytesIO
 from pathlib import Path
 
 from docx import Document
@@ -127,6 +130,29 @@ def citation(label, url):
     link.append(run)
     para._p.append(link)
 
+def add_mathematical_model():
+    """Import the GitHub-readable specification, including editable Word equations."""
+    converted = subprocess.run(
+        ["pandoc", "--fail-if-warnings", "--from=markdown", "--to=docx", str(HERE / "mathematical-model.md")],
+        check=True, stdout=subprocess.PIPE,
+    )
+    for source in Document(BytesIO(converted.stdout)).paragraphs:
+        if source.style.name == "Heading 1":
+            doc.add_page_break()
+            kicker("MATHEMATICAL MODEL")
+            heading(source.text)
+        elif source.style.name == "Heading 2":
+            heading(source.text, 2)
+        else:
+            target = doc.add_paragraph()
+            if source._p.find(qn("m:oMathPara")) is not None:
+                target.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                target.paragraph_format.space_before = Pt(1)
+                target.paragraph_format.space_after = Pt(5)
+            for child in source._p:
+                if child.tag != qn("w:pPr"):
+                    target._p.append(deepcopy(child))
+
 footer = sec.footer.paragraphs[0]
 footer.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 font(footer.add_run("Regional wind forecasting   /   First report     •     "), size=8.5, color=muted)
@@ -186,6 +212,8 @@ p("The conventional LSTM flattens each map and uses 24 hidden units. The regiona
 p("The third model adds two training penalties. The mass penalty compares horizontal wind divergence plus the vertical pressure derivative of vertical velocity with its ERA5 value. The energy penalty compares the change in dry static energy (1,004 × temperature + geopotential), including horizontal and vertical transport, with the corresponding ERA5 tendency. Both targets can be nonzero on this grid.")
 note("Tufts used a CPU job array for 99 training trials. The two regional NetCDF files together occupy 34.45 MB. Most repeated computation comes from fitting models across training windows, weights and seeds.")
 note("Neither the European Commission nor ECMWF is responsible for any use made of the Copernicus information in this report.")
+
+add_mathematical_model()
 
 doc.add_page_break()
 kicker("MODEL SELECTION AND TRAINING HISTORY")
