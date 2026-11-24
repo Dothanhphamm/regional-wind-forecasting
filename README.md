@@ -1,12 +1,12 @@
 # Regional wind forecasting · First research release
 
-Open **[the four-page research report](report/regional-wind-report.pdf)** to read the findings. An [editable Word version](report/regional-wind-report.docx) accompanies it. This release covers the completed three-model Tufts experiment with nested two-, five- and ten-year training histories and the final 2021 test. The earlier exploratory 2020 pilot is outside this release.
+Open **[the research report](report/regional-wind-report.pdf)** to read the findings. An [editable Word version](report/regional-wind-report.docx) accompanies it. Pages 3–5 give the forecast equations, the two physical diagnostics, and the objective used to fit each model. [Read the mathematical model on GitHub](report/mathematical-model.md). This release covers the completed three-model Tufts experiment with nested two-, five- and ten-year training histories and the final 2021 test. The earlier exploratory 2020 pilot is outside this release.
 
 The ten-year constrained PredRNN lowered the plain PredRNN’s mean 2021 vector wind RMSE by 0.098 m/s at 24 hours and 0.149 m/s at 48 hours. Only ten-year models reached 2021. All three training lengths can be compared on the common 2018 validation dates.
 
 ## 1. Inspect the results
 
-Unzip the archive and open the resulting `regional-wind-v1` folder. You can read the report and CSVs immediately. From a terminal in that folder, run this command with Python 3 to verify the file contents against the release manifest.
+Unzip the archive and open the extracted project folder. You can read the report and CSVs immediately. From a terminal in that folder, run this command with Python 3 to verify the file contents against the release manifest.
 
 ```bash
 python3 verify_release.py
@@ -60,7 +60,7 @@ The workflow creates a new run directory, provisions its CPU environment and sub
 
 ## 4. Rebuild the report
 
-From a working copy of this release, use Python with matplotlib and python-docx installed. Run the following commands in the release root. They regenerate Figure 1 from the bootstrap CSV and rebuild the editable report with its tables from the archived scores. To export the Word file to PDF, use Word’s PDF export or LibreOffice. The command below writes the new PDF to a separate folder.
+From a working copy of this release, use Python with matplotlib and python-docx installed, and put Pandoc on your PATH. Pandoc converts the equations in `report/mathematical-model.md` into editable Word equations. Run the following commands in the release root. They regenerate Figure 1 from the bootstrap CSV and rebuild the editable report with its tables from the archived scores. To export the Word file to PDF, use Word’s PDF export or LibreOffice. The command below writes the new PDF to a separate folder.
 
 ```bash
 python report/plot_gain.py
