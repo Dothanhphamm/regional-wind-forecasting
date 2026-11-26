@@ -1,3 +1,12 @@
+
+
+## 20-year Tufts extension
+
+The follow-up experiment trains the same three model families on 20 years of WeatherBench ERA5 data from 1998–2017 and evaluates them on 362 common 2022 forecast dates. It uses three seeds for each model, with mass and dry-static-energy penalty weights of 0.030 and 0.003 for the constrained PredRNN.
+
+The production run completed on Tufts with Slurm array 7585560 for the nine fits and job 7585561 for the final evaluation. The uploaded [code and results bundle](wind20_2022-code-results.tar.gz) contains the source code, nine checkpoints, metrics, calibration outputs, logs, package record, and job records. The main result tables are `summary.csv`, `paired_gains.csv`, `per_seed.csv`, and `finalists.csv`. The complete source and data archive is available in the local project workspace because GitHub’s web uploader limits individual files to 25 MB.
+
+The 20-year run compares the new models directly with the saved 10-year models on the same 2022 dates. Positive physics gain means that the constrained PredRNN has lower vector wind RMSE than the plain PredRNN.
 # Regional wind forecasting · First research release
 
 Open **[the research report](report/regional-wind-report.pdf)** to read the findings. An [editable Word version](report/regional-wind-report.docx) accompanies it. Pages 3–5 give the forecast equations, the two physical diagnostics, and the objective used to fit each model. [Read the mathematical model on GitHub](report/mathematical-model.md). This release covers the completed three-model Tufts experiment with nested two-, five- and ten-year training histories and the final 2021 test. The earlier exploratory 2020 pilot is outside this release.
